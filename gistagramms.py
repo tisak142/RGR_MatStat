@@ -95,18 +95,3 @@ plt.tight_layout(rect=[0, 0, 0.82, 1])
 plt.show()
 
 
-# пункт 4.5 выводится в консоль после закрытия окна с гистограммами
-for col in ["X1", "X2", "X3"]:
-    data = df[col].dropna().values
-    n = len(data)
-
-    counts, bin_edges = np.histogram(data, bins=10)
-
-    midpoints = (bin_edges[:-1] + bin_edges[1:]) / 2
-
-    mean_grouped = np.sum(counts * midpoints) / n
-    var_grouped = np.sum(counts * (midpoints - mean_grouped)**2) / n
-
-    print(f"\n{col}")
-    print(f"Среднее (групп): {mean_grouped:.2f}")
-    print(f"Дисперсия (групп): {var_grouped:.2f}")
